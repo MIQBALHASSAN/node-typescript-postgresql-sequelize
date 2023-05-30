@@ -1,0 +1,26 @@
+{
+  "name": "threshold360-node",
+  "version": "3.0.0",
+  "description": "Threshold360 REST API using postgresql & sequelize ORM ",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N/A.git"
+  },
+  "keywords": [
+    "Typescript",
+    "NodeJs",
+    "Express",
+    "Postgresql",
+    "Sequelize"
+  ],
+  "author": "M IQBAL HASSAN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/N/A/issues"
+  },
+  "homepage": "https://github.com/N/A#readme"
+}
