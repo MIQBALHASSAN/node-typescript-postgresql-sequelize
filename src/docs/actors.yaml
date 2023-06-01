@@ -1,0 +1,123 @@
+tags:
+  - name: actors
+    description: actors API
+
+paths:
+  # [GET] actors
+  /actors:
+    get:
+      tags:
+        - actors
+      summary: Find All actors
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+    # [POST] actors
+    post:
+      tags:
+        - actors
+      summary: Add actor
+      parameters:
+        - name: body
+          in: body
+          description: actor Data
+          required: true
+          schema:
+            $ref: '#/definitions/actors'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [GET] actors/id
+  /actors/{id}:
+    get:
+      tags:
+        - actors
+      summary: Find actor By Id
+      parameters:
+        - name: id
+          in: path
+          description: actor Id
+          required: true
+          type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [PUT] actors/id
+    put:
+      tags:
+        - actors
+      summary: Update actor By Id
+      parameters:
+        - name: id
+          in: path
+          description: actor Id
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: actor Data
+          required: true
+          schema:
+            $ref: '#/definitions/actors'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [DELETE] actors/id
+    delete:
+      tags:
+        - actors
+      summary: Delete actor By Id
+      parameters:
+        - name: id
+          in: path
+          description: actor Id
+          required: true
+          type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  actors:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+        description: actor Email
+      password:
+        type: string
+        description: actor Password
+
+schemes:
+  - https
+  - http

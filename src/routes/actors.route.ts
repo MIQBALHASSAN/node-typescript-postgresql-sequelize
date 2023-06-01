@@ -1,0 +1,52 @@
+import { Router } from 'express';
+import { Actor } from '@src/models/Actor';
+import { MovieActor } from '@src/models/MovieActor';
+
+export const actors = Router();
+
+actors.post('/', async (req, res, next) => {
+  try {
+    const actor = await Actor.create(req.body);
+    res.status(201).json(actor);
+  } catch (e) {
+    next(e);
+  }
+});
+
+actors.post('/:id/movies/:movieId', async (req, res, next) => {
+  try {
+    await MovieActor.create({
+      actorId: parseInt(req.params['id']),
+      movieId: parseInt(req.params['movieId']),
+    });
+    res.sendStatus(200);
+  } catch (e) {
+    next(e);
+  }
+});
+
+actors.get('', async (req, res, next) => {
+  try {
+    res.json(await Actor.scope(req.query['scope'] as string).findAll());
+  } catch (e) {
+    next(e);
+  }
+});
+
+actors.get('/:id', async (req, res, next) => {
+  try {
+    const actor = await Actor.scope(req.query['scope'] as string).findByPk(req.params['id']);
+    res.json(actor);
+  } catch (e) {
+    next(e);
+  }
+});
+
+actors.put('/:id', async (req, res, next) => {
+  try {
+    await Actor.update(req.body, { where: { id: req.params['id'] } });
+    res.sendStatus(200);
+  } catch (e) {
+    next(e);
+  }
+});
