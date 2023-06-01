@@ -1,6 +1,8 @@
 import { Model, Column, Table, BelongsToMany } from 'sequelize-typescript';
 import { Role } from '@src/models/Role';
 import { UserRole } from '@src/models/UserRole';
+import { CameraUser } from '@src/models/CameraUser';
+import { Camera } from '@src/models/Camera';
 
 @Table({ tableName: 'users', timestamps: true })
 export class User extends Model<User> {
@@ -39,7 +41,10 @@ export class User extends Model<User> {
   @Column active: Boolean;
   @Column accepted_terms_at: Date;
 
-  // Relations
+  // relations
   @BelongsToMany(() => Role, () => UserRole)
   roles: Role[];
+
+  @BelongsToMany(() => Camera, () => CameraUser)
+  cameras: Camera[];
 }
