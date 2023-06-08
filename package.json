@@ -4,8 +4,8 @@
   "description": "Threshold360 REST API using postgresql & sequelize ORM ",
   "main": "server.ts",
   "scripts": {
-    "start": "yarn run build && cross-env NODE_ENV=production node dist/server.js",
-    "dev": "cross-env NODE_ENV=development nodemon",
+    "start": " yarn run build && cross-env NODE_ENV=production node dist/server.js",
+    "dev": "DEBUG=express:* cross-env NODE_ENV=development nodemon",
     "build": "swc src -d dist --source-maps --copy-files",
     "build:tsc": "tsc && tsc-alias",
     "test": "jest --forceExit --detectOpenHandles",
